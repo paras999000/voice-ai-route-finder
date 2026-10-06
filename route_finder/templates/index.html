@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Route Finder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Controls -->
+        <aside class="sidebar">
+            <div class="header">
+                <h2><i class="fa-solid fa-route"></i> Route Finder System</h2>
+                <p>Heuristic Search Optimization</p>
+            </div>
+
+            <div class="control-panel">
+                <div class="form-group">
+                    <label>Source Node</label>
+                    <select id="source-select" class="form-control">
+                        <!-- Options populated by JS -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Destination Node</label>
+                    <select id="target-select" class="form-control">
+                        <!-- Options populated by JS -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Algorithm</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="algorithm" value="astar" checked> A* Search
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="algorithm" value="bestfirst"> Best First Search
+                        </label>
+                    </div>
+                </div>
+
+                <button id="find-route-btn" class="primary-btn">Compute Route</button>
+            </div>
+
+            <div class="metrics-panel">
+                <h3>Performance Metrics</h3>
+                <div class="metric">
+                    <span class="metric-label">Execution Time</span>
+                    <span class="metric-value" id="metric-time">-- ms</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Path Cost (Distance)</span>
+                    <span class="metric-value" id="metric-cost">--</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Nodes Expanded</span>
+                    <span class="metric-value" id="metric-expanded">--</span>
+                </div>
+            </div>
+
+            <div class="legend">
+                <h4>Legend</h4>
+                <div class="legend-item"><span class="color-box node-default"></span> Unexplored Node</div>
+                <div class="legend-item"><span class="color-box node-expanded"></span> Expanded Node</div>
+                <div class="legend-item"><span class="color-box node-path"></span> Final Optimal Path</div>
+            </div>
+        </aside>
+
+        <!-- Main Visualization Area -->
+        <main class="visualization-area">
+            <div class="canvas-container">
+                <canvas id="network-canvas" width="800" height="600"></canvas>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

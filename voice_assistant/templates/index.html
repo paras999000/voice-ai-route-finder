@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Voice Route Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- Left Sidebar: Voice Assistant + Controls -->
+        <aside class="sidebar">
+            <div class="header">
+                <h2><i class="fa-solid fa-microphone-lines"></i> AI Voice Assistant</h2>
+                <p>Speak to route, search, or open websites</p>
+                <div class="voice-hint">
+                    <small>Try asking: <i>"Find route from Node 3 to Node 6 using A*"</i></small>
+                </div>
+            </div>
+
+            <!-- Voice Control -->
+            <div class="assistant-module">
+                <div class="mic-container">
+                    <button id="mic-btn" class="mic-btn">
+                        <i class="fa-solid fa-microphone"></i>
+                    </button>
+                    <div class="status-indicator">
+                        <span id="status-text">Ready</span>
+                        <div id="status-dots" class="dots hidden">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-area">
+                    <div class="output-box">
+                        <p class="label">Recognized Text</p>
+                        <p id="recognized-text" class="text-content">...</p>
+                    </div>
+                    <div class="output-box action-box">
+                        <p class="label">Assistant Action</p>
+                        <p id="assistant-action" class="text-content">...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metrics Panel -->
+            <div class="metrics-panel">
+                <h3>Routing Metrics</h3>
+                <div class="metric">
+                    <span class="metric-label">Algorithm Used</span>
+                    <span class="metric-value">
+                        <span id="metric-algo" class="algo-badge">None</span>
+                    </span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Execution Time</span>
+                    <span class="metric-value" id="metric-time">-- ms</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Path Cost</span>
+                    <span class="metric-value" id="metric-cost">--</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Nodes Expanded</span>
+                    <span class="metric-value" id="metric-expanded">--</span>
+                </div>
+            </div>
+
+            <!-- Graphic Legend -->
+            <div class="legend">
+                <h4>Legend</h4>
+                <div class="legend-item"><span class="color-box node-default"></span> Unexplored</div>
+                <div class="legend-item"><span class="color-box node-expanded"></span> Expanded</div>
+                <div class="legend-item"><span class="color-box node-path"></span> Optimal Path</div>
+            </div>
+
+        </aside>
+
+        <!-- Main Visualization Area: The Graph Map -->
+        <main class="visualization-area">
+            <div class="canvas-container">
+                <canvas id="network-canvas" width="800" height="600"></canvas>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- The exact script file we will merge next -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
